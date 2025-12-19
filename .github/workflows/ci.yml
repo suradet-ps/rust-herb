@@ -1,0 +1,58 @@
+name: Rust CI
+
+# ทริกเกอร์ Workflow เมื่อมีการ push ไปที่ branch `main`
+# หรือเมื่อมีการเปิด Pull Request มาที่ `main`
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# ตั้งค่า permissions ให้น้อยที่สุดเพื่อความปลอดภัย
+permissions:
+  contents: read
+
+jobs:
+  # Job ที่ 1: ตรวจสอบ Format และคุณภาพโค้ด
+  lint:
+    name: Lint & Format Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          # เพิ่ม components ที่จำเป็นสำหรับ format และ lint
+          components: rustfmt, clippy
+
+      - name: Install leptosfmt
+        run: cargo install leptosfmt
+
+      - name: Check formatting with leptosfmt
+        run: leptosfmt --check .
+
+      - name: Run Clippy
+        # -- -D warnings คือการสั่งให้ Clippy มอง Warning เป็น Error (ทำให้ CI fail ถ้ามี Warning)
+        run: cargo clippy -- -D warnings
+
+  # Job ที่ 2: ทดลอง Build โปรเจกต์
+  build:
+    name: Build Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Add WASM target
+        run: rustup target add wasm32-unknown-unknown
+
+      - name: Install cargo-leptos
+        run: cargo install cargo-leptos
+
+      - name: Build project
+        run: cargo leptos build --release
