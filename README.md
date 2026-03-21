@@ -2,25 +2,25 @@
 
 > A high-performance web application for browsing Thailand's NHSO-supported herbal medicines, rebuilt with **Rust** and **Leptos**.
 
-[![Rust](https://img.shields.io/badge/Rust-Nightly-orange?style=for-the-badge&logo=rust)](https://www.rust-lang.org/)
-[![Leptos](https://img.shields.io/badge/Leptos-0.7-red?style=for-the-badge)](https://leptos.dev/)
-[![Axum](https://img.shields.io/badge/Axum-Backend-blue?style=for-the-badge)](https://github.com/tokio-rs/axum)
-[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
+[![Rust](https://img.shields.io/badge/Rust-Nightly-CE412B?logo=rust&logoColor=white)](https://www.rust-lang.org/)
+[![Leptos](https://img.shields.io/badge/Leptos-0.7-FF8937)](https://leptos.dev/)
+[![Axum](https://img.shields.io/badge/Axum-Backend-3178C6)](https://github.com/tokio-rs/axum)
+[![License](https://img.shields.io/badge/License-MIT-10B981)](LICENSE)
 
-## 📖 Overview
+## Overview
 
 This project is a port of the original Vue.js application, rewritten in Rust to leverage **Server-Side Rendering (SSR)** and **WebAssembly (WASM)**. It serves as a digital formulary for healthcare professionals at Sabot Hospital, providing instant access to herbal medicine data.
 
-## ✨ Key Features
+## Key Features
 
-- **🚀 Blazing Fast Performance**: Powered by Rust and WebAssembly with Leptos fine-grained reactivity.
-- **mj Server-Side Rendering (SSR)**: Initial HTML is rendered on the server (Axum) for SEO and fast First Contentful Paint.
-- **🎨 Pure Semantic SCSS**: Styled with clean, maintainable SCSS without relying on utility-class frameworks.
-- **📄 Headless CMS**: Fetches data dynamically from Google Sheets via a secure Server Function.
-- **🔍 Instant Search & Filter**: Client-side filtering with memoized signals for immediate feedback.
-- **🛡️ Type Safety**: Full end-to-end type safety from API response to UI rendering.
+- **Blazing Fast Performance**: Powered by Rust and WebAssembly with Leptos fine-grained reactivity.
+- **Server-Side Rendering (SSR)**: Initial HTML is rendered on the server (Axum) for SEO and fast First Contentful Paint.
+- **Pure Semantic SCSS**: Styled with clean, maintainable SCSS without relying on utility-class frameworks.
+- **Headless CMS**: Fetches data dynamically from Google Sheets via a secure Server Function.
+- **Instant Search & Filter**: Client-side filtering with memoized signals for immediate feedback.
+- **Type Safety**: Full end-to-end type safety from API response to UI rendering.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend Framework**: [Leptos](https://github.com/leptos-rs/leptos) (Signals, Components, Suspense)
 - **Backend Server**: [Axum](https://github.com/tokio-rs/axum)
@@ -28,7 +28,7 @@ This project is a port of the original Vue.js application, rewritten in Rust to 
 - **Data Fetching**: Reqwest (Server-side)
 - **Environment Management**: `dotenvy`
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -70,7 +70,7 @@ This project is a port of the original Vue.js application, rewritten in Rust to 
    ```
    The app will be available at `http://localhost:3000`.
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 rust-herb/
@@ -92,7 +92,7 @@ rust-herb/
 └── Cargo.toml           # Dependencies
 ```
 
-## 📦 Building for Production
+## Building for Production
 
 To build the application for deployment:
 
@@ -119,7 +119,7 @@ This will generate:
    ./rust-herb
    ```
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Unit tests
@@ -132,6 +132,6 @@ cargo clippy
 cargo fmt --all --check
 ```
 
-## 📄 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
