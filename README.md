@@ -54,7 +54,7 @@ This project is a port of the original Vue.js application, rewritten in Rust to 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/pharmacist-sabot/rust-herb.git
+   git clone https://github.com/suradet-ps/rust-herb.git
    cd rust-herb
    ```
 
