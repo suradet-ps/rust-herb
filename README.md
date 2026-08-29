@@ -1,137 +1,146 @@
-# Thai Herbal NHSO Support App (Rust Edition)
-
-> A high-performance web application for browsing Thailand's NHSO-supported herbal medicines, rebuilt with **Rust** and **Leptos**.
-
-[![Rust](https://img.shields.io/badge/Rust-Nightly-CE412B?logo=rust&logoColor=white)](https://www.rust-lang.org/)
-[![Leptos](https://img.shields.io/badge/Leptos-0.7-FF8937)](https://leptos.dev/)
-[![Axum](https://img.shields.io/badge/Axum-Backend-3178C6)](https://github.com/tokio-rs/axum)
-[![License](https://img.shields.io/badge/License-MIT-10B981)](LICENSE)
-
-## Overview
-
-This project is a port of the original Vue.js application, rewritten in Rust to leverage **Server-Side Rendering (SSR)** and **WebAssembly (WASM)**. It serves as a digital formulary for healthcare professionals at Sabot Hospital, providing instant access to herbal medicine data.
-
-## Key Features
-
-- **Blazing Fast Performance**: Powered by Rust and WebAssembly with Leptos fine-grained reactivity.
-- **Server-Side Rendering (SSR)**: Initial HTML is rendered on the server (Axum) for SEO and fast First Contentful Paint.
-- **Pure Semantic SCSS**: Styled with clean, maintainable SCSS without relying on utility-class frameworks.
-- **Headless CMS**: Fetches data dynamically from Google Sheets via a secure Server Function.
-- **Instant Search & Filter**: Client-side filtering with memoized signals for immediate feedback.
-- **Type Safety**: Full end-to-end type safety from API response to UI rendering.
-
-## Tech Stack
-
-- **Frontend Framework**: [Leptos](https://github.com/leptos-rs/leptos) (Signals, Components, Suspense)
-- **Backend Server**: [Axum](https://github.com/tokio-rs/axum)
-- **Styling**: SCSS (Dart Sass)
-- **Data Fetching**: Reqwest (Server-side)
-- **Environment Management**: `dotenvy`
-
-## Getting Started
-
-### Prerequisites
-
-1. **Rust Nightly Toolchain**:
-   ```bash
-   rustup toolchain install nightly --allow-downgrade
-   rustup default nightly
-   rustup target add wasm32-unknown-unknown
-   ```
-
-2. **Cargo Leptos**:
-   ```bash
-   cargo install cargo-leptos --locked
-   ```
-
-3. **Sass (for styling)**:
-   ```bash
-   npm install -g sass
-   # or via your package manager of choice
-   ```
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/suradet-ps/rust-herb.git
-   cd rust-herb
-   ```
-
-2. **Configure Environment Variables**
-   Create a `.env` file in the root directory and add your Google Apps Script API URL:
-   ```env
-   GOOGLE_API_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
-   ```
-
-3. **Run the Development Server**
-   ```bash
-   cargo leptos watch
-   ```
-   The app will be available at `http://localhost:3000`.
-
-## Project Structure
+# Thai Herbal NHSO Support App
 
 ```
-rust-herb/
-├── public/              # Static assets
-├── src/
-│   ├── api.rs           # Server Functions for fetching data
-│   ├── app.rs           # Main application logic & routing
-│   ├── lib.rs           # Library entry point & Hydration
-│   ├── main.rs          # Server entry point (Axum)
-│   ├── models.rs        # Data structures (Structs)
-│   └── components/      # UI Components
-│       ├── header.rs
-│       ├── footer.rs
-│       ├── herb_card.rs
-│       ├── search_bar.rs
-│       └── ...
-├── style/
-│   └── main.scss        # Global SCSS styles
-└── Cargo.toml           # Dependencies
+██████╗ ██╗   ██╗ ██████╗████████╗██╗  ██╗███████╗██████╗ ██████╗
+██╔══██╗██║   ██║██╔════╝╚══██╔══╝██║  ██║██╔════╝██╔══██╗██╔══██╗
+██████╔╝██║   ██║███████╗   ██║   ███████║█████╗  ██████╔╝██████╔╝
+██╔══██╗██║   ██║╚════██║   ██║   ██║  ██║██╔══╝  ██╔══██╗██╔══██╗
+██║  ██║╚██████╔╝██████╔╝   ██║   ██║  ██║███████╗██║  ██║██████╔╝
+╚═╝  ╚═╝ ╚═════╝ ╚═════╝   ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝
 ```
 
-## Building for Production
+---
 
-To build the application for deployment:
+## ◆ PULSE
 
-```bash
-cargo leptos build --release
+The formulary should follow the clinician, not the other way around.
+This is the Thai National Health Security Office's supported herbal
+medicine list, rebuilt in Rust - Leptos SSR rendering the first paint on
+the server, WASM hydrating the search, and a Google Sheets-backed CMS
+feeding the page without a database in sight. A digital formulary for
+Sabot Hospital's healthcare professionals: instant search, memoized
+filtering, and answers from one trusted source.
+
+| SSR ▣ | Instant search ▣ | Headless CMS ▣ | Type-safe ▣ |
+|---|---|---|---|
+
+*The formulary - render, search, filter, fetch - is sealed.*
+
+> Built with Leptos 0.7 + Axum, styled in pure SCSS, fed by Google
+> Sheets through a server function - the Vue original, ported honest.
+>
+> **suradet-ps**, artifact keeper
+
+---
+
+## ◆ IGNITION
+
+Nightly, one tool, one command.
+
+```
+⟫ rustup toolchain install nightly --allow-downgrade
+⟫ rustup default nightly
+⟫ rustup target add wasm32-unknown-unknown
+⟫ cargo install cargo-leptos --locked
+⟫ cargo leptos watch
 ```
 
-This will generate:
-1. A server binary in `target/server/release/rust-herb`
-2. Static site files in `target/site/`
+Open [http://localhost:3000](http://localhost:3000).
 
-### Deployment (Linux Server)
+<details>
+<summary>Environment</summary>
 
-1. Copy the binary and the `site` folder to your server.
-2. Set the required environment variables:
-   ```bash
-   export LEPTOS_OUTPUT_NAME="rust-herb"
-   export LEPTOS_SITE_ROOT="site"
-   export LEPTOS_SITE_ADDR="0.0.0.0:3000"
-   export GOOGLE_API_URL="your_google_script_url"
-   ```
-3. Run the binary:
-   ```bash
-   ./rust-herb
-   ```
+A `.env` file with the Google Apps Script endpoint:
 
-## Testing
-
-```bash
-# Unit tests
-cargo test
-
-# Clippy (Linting)
-cargo clippy
-
-# Format check
-cargo fmt --all --check
+```
+GOOGLE_API_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
 ```
 
-## License
+Sass (for styling): `⟫ npm install -g sass`
 
-This project is open source and available under the [MIT License](LICENSE).
+</details>
+
+Production: `⟫ cargo leptos build --release` - a server binary in
+`target/server/release/` plus static site files in `target/site/`, run
+with `LEPTOS_OUTPUT_NAME`, `LEPTOS_SITE_ROOT`, `LEPTOS_SITE_ADDR`, and
+`GOOGLE_API_URL` set.
+
+---
+
+## ◆ ANATOMY
+
+One server, one signal graph, one sheet of truth.
+
+- **Renders** - Axum serves the first HTML on the server - the
+  formulary's first paint needs no WASM boot to exist - and Leptos
+  hydrates the rest with fine-grained reactivity.
+- **Fetches** - a server function pulls the herb data from Google
+  Sheets via `GOOGLE_API_URL`; the CMS is a spreadsheet, the database
+  is wherever the formulary already lives.
+- **Searches** - client-side filtering over memoized signals answers
+  keystroke by keystroke - the full list, filtered in place, no round
+  trip per letter.
+- **Types** - the API response flows into typed structs (`models.rs`)
+  and out through typed components - end to end, no `any` at the
+  seams.
+- **Wears** - pure semantic SCSS, hand-authored, no utility framework:
+  the style layer is as deliberate as the Rust layer.
+- **Tests** - `cargo test`, `cargo clippy`, and `cargo fmt --all
+  --check` guard the port from the original Vue days.
+
+---
+
+## ◆ RITUALS
+
+**The core ceremony** - the formulary lookup:
+
+1. Open the page. The SSR paint is already the formulary - no spinner,
+   no blank screen waiting on WASM.
+2. Type into the search bar. The filtered list answers each keystroke,
+   memoized and instant.
+3. Read the herb card: the NHSO-supported details, rendered from the
+   typed model.
+4. Trust the source: the data came from the spreadsheet the formulary
+   was born in, fetched server-side, never scraped on the client.
+
+**The ceremony of the first paint** - the page renders before it
+hydrates. What the clinician sees first is HTML from the server, not a
+loading promise.
+
+**The ceremony of the sheet** - no CMS, no database, no API key in the
+browser: the content lives in Google Sheets and arrives through a
+server function. The formulary's source of truth stays where the
+hospital already keeps it.
+
+---
+
+## ◆ ECHOES
+
+**Where this artifact is heading**
+
+```
+render   ▸ Axum SSR first paint, Leptos hydration ─────────────────── ▸ sealed
+fetch    ▸ Google Sheets via server function ──────────────────────── ▸ sealed
+search   ▸ memoized client-side filtering ─────────────────────────── ▸ sealed
+style    ▸ semantic SCSS, no utility framework ────────────────────── ▸ sealed
+test     ▸ cargo test, clippy, fmt gates ──────────────────────────── ▸ sealed
+```
+
+**Raising the artifact** - the port's shape is documented in the
+project structure: `api.rs`, `app.rs`, `models.rs`, `components/`.
+End-to-end checks live under `end2end/`. Open an issue first to
+discuss a change.
+
+**Status** - dependencies are maintained through Renovate; deployment
+is a Linux binary plus a static `site/` folder.
+
+---
+
+```
+  ─────────────────────────────────────────
+   A formulary that renders before it asks
+   is a formulary that respects the clock.
+  ─────────────────────────────────────────
+```
+
+Open source under the [MIT License](LICENSE).
