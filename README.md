@@ -1,13 +1,11 @@
 # Thai Herbal NHSO Support App
 
-```
-██████╗ ██╗   ██╗ ██████╗████████╗██╗  ██╗███████╗██████╗ ██████╗
-██╔══██╗██║   ██║██╔════╝╚══██╔══╝██║  ██║██╔════╝██╔══██╗██╔══██╗
-██████╔╝██║   ██║███████╗   ██║   ███████║█████╗  ██████╔╝██████╔╝
-██╔══██╗██║   ██║╚════██║   ██║   ██║  ██║██╔══╝  ██╔══██╗██╔══██╗
-██║  ██║╚██████╔╝██████╔╝   ██║   ██║  ██║███████╗██║  ██║██████╔╝
-╚═╝  ╚═╝ ╚═════╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝
-```
+[![CI](https://github.com/suradet-ps/rust-herb/actions/workflows/ci.yml/badge.svg)](https://github.com/suradet-ps/rust-herb/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Rust: stable](https://img.shields.io/badge/rust-stable-orange.svg?logo=rust&logoColor=white)](https://www.rust-lang.org/)
+[![Leptos v0.8](https://img.shields.io/badge/Leptos-v0.8-blue.svg)](https://leptos.dev)
+[![Axum v0.8](https://img.shields.io/badge/Axum-v0.8-blue.svg)](https://github.com/tokio-rs/axum)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/suradet-ps/rust-herb/issues)
 
 ---
 
@@ -26,7 +24,7 @@ filtering, and answers from one trusted source.
 
 *The formulary - render, search, filter, fetch - is sealed.*
 
-> Built with Leptos 0.7 + Axum, styled in pure SCSS, fed by Google
+> Built with Leptos 0.8 + Axum, styled in pure SCSS, fed by Google
 > Sheets through a server function - the Vue original, ported honest.
 >
 > **suradet-ps**, artifact keeper
